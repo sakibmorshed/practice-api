@@ -131,9 +131,26 @@ const PORT = process.env.PORT || 5001;
 app.get("/", (req, res) => res.send("Demo API running"));
 app.get("/demo/transactions", (req, res) => {
   res.json([
-    { id: 1, amount: 500, type: "income" },
-    { id: 2, amount: 200, type: "expense" },
+    { id: 1, title: "Salary", amount: 50000, type: "income" },
+    { id: 2, title: "Groceries", amount: 2000, type: "expense" },
+    { id: 3, title: "Freelance", amount: 15000, type: "income" },
   ]);
+});
+app.get("/demo/transactions/:id", (req, res) => {
+  res.json({
+    id: req.params.id,
+    title: "Sample Transaction",
+    amount: 3000,
+    type: "expense",
+    createdAt: new Date(),
+  });
+});
+app.get("/demo/stats/monthly", (req, res) => {
+  res.json({
+    totalIncome: 65000,
+    totalExpense: 20000,
+    balance: 45000,
+  });
 });
 
 (async () => {
