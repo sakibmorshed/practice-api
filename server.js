@@ -129,6 +129,12 @@ app.get("/stats/monthly", verifyToken, async (req, res) => {
 
 const PORT = process.env.PORT || 5001;
 app.get("/", (req, res) => res.send("Demo API running"));
+app.get("/demo/transactions", (req, res) => {
+  res.json([
+    { id: 1, amount: 500, type: "income" },
+    { id: 2, amount: 200, type: "expense" },
+  ]);
+});
 
 (async () => {
   const ok = await connectDB();
